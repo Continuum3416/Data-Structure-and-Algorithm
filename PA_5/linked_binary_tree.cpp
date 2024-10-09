@@ -1,5 +1,5 @@
-#ifndef HEADER_H_NAME
-#define HEADER_H_NAME
+#ifndef LINKED_BINARY_TREE_H
+#define LINKED_BINARY_TREE_H
 
 #include<iostream>
 #include <vector>
