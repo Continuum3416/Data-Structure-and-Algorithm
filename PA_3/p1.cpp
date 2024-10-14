@@ -128,7 +128,7 @@ template <typename T> class Vector {
 
 
 int main(){
-    Vector <string> A = {"One"};
+    Vector <string> A = {"One", "Two"};
     A.insert(0, "Two");
     A.insert(1, "Three");
     A.insert(3, "Four");

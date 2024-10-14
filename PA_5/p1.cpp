@@ -21,7 +21,7 @@ template<typename T> void preorderTraversal(Node<T>* root){
     stack<Node<T>*> node_stack;
     node_stack.push(root);
 
-    while(!node_stack.empty()){
+    while(!node_stack.empty()){a
         Node<T>* current = node_stack.top();
         node_stack.pop();
 
