@@ -8,7 +8,7 @@ using namespace std;
 
 
 int main(){
-     HeapPriorityQueue<int> min_heap; //less is default
+    HeapPriorityQueue<int> min_heap; //less is default
     HeapPriorityQueue<int, std::greater<int>> max_heap;
     std::cout << "Min-Heap Operations:" << std::endl;
     
