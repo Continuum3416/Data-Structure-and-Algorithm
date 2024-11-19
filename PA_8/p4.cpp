@@ -20,17 +20,7 @@ class BetterPopMap{
 private:
     AVLTreeMap<int, string> tree_map;
 public:
-    void insert(const int& countyCode, double population, const string& countyName){
-        population /= 1000.0;
-        ostringstream oss;
-        oss << std::fixed << std::setprecision(2) << population;
-        string formattedPopulation = oss.str();
-        string value = "Population: " + formattedPopulation + " million, County: " + countyName;
-        tree_map.put(countyCode, value);
-    }
-
-
-    void readData(const string& filename){
+    BetterPopMap(const string& filename){
         ifstream file(filename);
 
         string line;
@@ -51,7 +41,17 @@ public:
         }
     }
 
-    void display(){
+    void insert(const int& countyCode, double population, const string& countyName){
+        population /= 1000.0;
+        ostringstream oss;
+        oss << std::fixed << std::setprecision(3) << population;
+        string formattedPopulation = oss.str();
+        string value = "Population: " + formattedPopulation + " million, County: " + countyName;
+        tree_map.put(countyCode, value);
+    }
+
+    void print(){
+        cout << "Print: " << endl;
         for(auto it = tree_map.begin(); it != tree_map.end(); it++){
             cout << it->key() << ": " << it->value() << endl;
         }
@@ -72,17 +72,16 @@ public:
 };
 
 int main(){
-    BetterPopMap population_map;
-    population_map.readData("popSmall.txt");
-    population_map.display();
+    BetterPopMap population_map("popSmall.txt");
+    population_map.print();
     population_map.findCounty(6037);
     population_map.findCounty(6000);
     population_map.insert(6066, 1, "New County, CA");
-    population_map.insert(6065, 1, "New County, CA");
+    population_map.insert(6065, 1, "2000, Riverside, CA");
     population_map.erase(6999);
     population_map.erase(6075);
     population_map.erase(6055);
-    population_map.display();
+    population_map.print();
 
     // g++ p4.cpp -o p4.exe; ./p4.exe
 

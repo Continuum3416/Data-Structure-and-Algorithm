@@ -15,9 +15,14 @@ string reverseKey(int key){
     return s;
 }
 
+int totalNodesExamined = 0;
+int findOperationsCount = 0;
+
 class SimplePopMap{
 private:
     TreeMap<int, string> tree_map;
+
+
 public:
     void insert(const int& countyCode, double population, const string& countyName){
         population /= 1000.0;
@@ -27,7 +32,6 @@ public:
         string value = "Population: " + formattedPopulation + " million, County: " + countyName;
         tree_map.put(countyCode, value);
     }
-
 
     SimplePopMap(const string& filename){
         ifstream file(filename);
@@ -58,33 +62,58 @@ public:
     }
 
     void findCounty(int countyCode) const{
-        auto it = tree_map.find(countyCode);
+        auto it = tree_map.begin();
+        int nodesExamined = 0;
+
+        // Iterate until we find the countyCode or reach the end
+        while(it != tree_map.end() && it->key() != countyCode){
+            ++it;
+            ++nodesExamined;
+        }
+        
         cout << fixed << setprecision(2);
-        if(it != tree_map.end())
+        if(it != tree_map.end()){
             cout << "Found: " << it->key() << ": " << it->value() << endl;
+            ++nodesExamined;  // Increment for the found node
+        }
         else
             cout << "County code " << countyCode << " not found." << endl;
+
+        // Update counters
+        totalNodesExamined += nodesExamined;
+        ++findOperationsCount;
     }
 
     void erase(const int& countyCode){
         tree_map.erase(countyCode);
     }
+
+    void printAverageFindOperations() const{
+        if (findOperationsCount > 0) {
+            double avgOperations = static_cast<double>(totalNodesExamined) / findOperationsCount;
+            cout << endl<< "Average number of nodes examined per find operation: " << avgOperations << endl;
+        } else {
+            cout << "No find operations performed." << endl;
+        }
+    }
 };
 
 int main(){
-    SimplePopMap population_map("popSmall.txt");
-    population_map.print();
+    SimplePopMap population_map("test.txt");
+    //population_map.print();
     population_map.findCounty(6037);
     population_map.findCounty(6000);
-    population_map.insert(6066, 1, "New County, CA");
-    population_map.insert(6066, 1, "Old County, CA");
-    population_map.insert(6065, 1, "2000, Riverside, CA");
-    population_map.erase(6999);
-    population_map.erase(6075);
-    population_map.erase(6055);
-    population_map.print();
+    // population_map.insert(6066, 1, "New County, CA");
+    // population_map.insert(6065, 1, "2000, Riverside, CA");
+    // population_map.erase(6999);
+    // population_map.erase(6075);
+    // population_map.erase(6055);
+    // population_map.print();
+    
+    // Print the average number of nodes examined in find operations
+    population_map.printAverageFindOperations();
 
-    // g++ p2.cpp -o p2.exe; ./p2.exe
+    // g++ ec_ex_2.cpp -o ec_ex_2.exe; ./ec_ex_2.exe
 
     return 0;
 }

@@ -43,7 +43,7 @@ void search(ChainHashMap<int, string>& map, int target){
 }
 
 int main(){
-    ChainHashMap<int, string> chain_map;
+    ChainHashMap<int, string> chain_map; 
 
     chain_map.put(13, reverseKey(13));
     chain_map.put(21, reverseKey(21));
