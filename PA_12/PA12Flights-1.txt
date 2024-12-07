@@ -1,0 +1,16 @@
+LAX   SEA    199
+LAX   DFW    189
+SFO   LAX     79
+DFW   LAX    199
+DFW   SFO     99
+ORD   DFW     50
+ORD   BOS    179
+BOS   ORD    149
+BOS   JFK     99
+JFK   ORD     99
+JFK   MIA     49
+JFK   MSY    220
+MIA   MSY     50
+MSY   LAX    190
+MSY   DFW    109
+SEA   ORD    179
