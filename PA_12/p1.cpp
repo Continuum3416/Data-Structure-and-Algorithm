@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <unordered_map>
+#include <algorithm>
 #include <queue>
 #include <vector>
 #include <limits>

@@ -1,0 +1,30 @@
+cout << "Insert Jane John Kim: " << endl;
+list.insertRear("Jane");
+list.insertRear("John");
+list.insertRear("Kim");
+list.print();
+
+cout << "\nRemove John Tom, rear: " << endl;
+list.removeElem("John");
+list.removeElem("Tom");
+list.removeRear();
+list.print();
+
+cout << "\nInsert Bob Before Jo: " << endl;
+list.insertElem("Bob", "Jo");
+
+cout << "\nInsert Don Before Bob: " << endl;
+list.insertElem("Don", "Bob");
+list.print();
+
+cout << "\nSize of string list: " << list.Size() << endl;
+
+
+cout << "\nInteger List: " << endl;
+MyDList<int> intList;
+if(intList.empty()) cout << "List is empty";
+
+cout << "Running time for insertRear() is O(1)" << endl;
+cout << "Running time for removeRear() is O(1)" << endl;
+cout << "Running time for removeElem() is O(n)" << endl;
+cout << "Running time for insertElem() is O(n)" << endl;
